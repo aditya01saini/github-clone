@@ -19,10 +19,12 @@ yargs(hideBin(process.argv))
         type: "string",
       });
     },
-    addRepo
+    (argv) => {
+      addRepo(argv.file);
+    }
   )
   .command(
-    "add <file>",
+    "commit <message>",
     "commit the staged files",
     (yargs) => {
       yargs.positional("message", {
@@ -30,7 +32,9 @@ yargs(hideBin(process.argv))
         type: "string",
       });
     },
-    commitRepo
+    (argv) => {
+      commitRepo(argv.message);
+    }
   )
 
   .command("push", "Push commit to S3", {}, pushRepo)
