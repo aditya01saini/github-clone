@@ -18,7 +18,7 @@ const updateUserProfile = (req, res) => {
   res.send("profile Updated!");
 };
 
-const deletwUserProfile = (req, res) => {
+const deleteUserProfile = (req, res) => {
   res.send("Profile Deleted!!");
 };
 
@@ -28,5 +28,5 @@ module.exports = {
   login,
   getUserProfile,
   updateUserProfile,
-  deletwUserProfile,
+  deleteUserProfile,
 };
