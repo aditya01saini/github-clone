@@ -11,5 +11,3 @@ userRouter.put("/updateProfile", userController.updateUserProfile);
 userRouter.delete("/deleteProfile", userController.deleteUserProfile);
 
 module.exports = userRouter;
-
-
