@@ -108,12 +108,13 @@ async function getUserProfile(req, res) {
     });
 
     if (!user) {
-      return res.status(400).json({ message: "User not found!" });
+      return res.status(404).json({ message: "User not found!" });
     }
-    res.send(user, { message: "Profile fetched!" });
+
+    res.send(user);
   } catch (err) {
-    console.error("Error during fetching", err.message);
-    res.status(500).send("server error!");
+    console.error("Error during fetching : ", err.message);
+    res.status(500).send("Server error!");
   }
 }
 
@@ -150,6 +151,7 @@ async function updateUserProfile(req, res) {
     res.status(500).send("Server error!");
   }
 }
+
 async function deleteUserProfile(req, res) {
   const currentID = req.params.id;
 
