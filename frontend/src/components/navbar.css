@@ -1,0 +1,35 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+
+}
+
+nav img{
+    height: 50px;
+    border-radius: 100%;
+}
+
+nav div{
+    display: flex;
+}
+
+Link{
+    margin-left: 50px;
+}
+
+nav h3 {
+    margin: 15px;
+    color: white;
+}
+nav p{
+    margin-left: 50px;
+    color: white;
+    font-weight: bold;
+}
+
+nav h3:hover,
+nav p:hover{
+    text-decoration: underline;
+}
