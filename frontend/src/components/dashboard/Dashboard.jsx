@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./dashboard.css";
+import Navbar from "../Navbar";
 const Dashboard = () => {
   const [repositories, setRepositories] = useState([]);
   const [searchQuery, setSearchQuery] = useState([]);
@@ -17,7 +18,7 @@ const Dashboard = () => {
 
         const data = await response.json();
         setRepositories(data.repositories);
-      } catch (error) {
+      } catch (err) {
         console.error("Error while fatching repositories!", err);
       }
     };
@@ -30,7 +31,7 @@ const Dashboard = () => {
         // console.log(data);
         setSuggestedRepositories(data);
         console.log(suggestedRepositories);
-      } catch (error) {
+      } catch (err) {
         console.error("Error while fatching repositories!", err);
       }
     };
@@ -50,44 +51,55 @@ const Dashboard = () => {
     }
   }, [searchQuery, repositories]);
   return (
-    <section id="dashboard"> 
-      <aside>
-        <h3 >Suggested Repositories</h3>
-        {suggestedRepositories.map((repo) => {
+    <>
+    <Navbar />
+      <section id="dashboard">
+        <aside>
+          <h3>Suggested Repositories</h3>
+          {suggestedRepositories.map((repo) => {
             return (
-          <div key={repo._id}>
-            <h4>{repo.name}</h4>
-            <p>{repo.description}</p>
-          </div>
+              <div key={repo._id}>
+                <h4>{repo.name}</h4>
+                <p>{repo.description}</p>
+              </div>
             );
-        })}
-      </aside>
-      <main>
-         <h2>Your Repositories</h2>
-        {suggestedRepositories.map((repo) => {
+          })}
+        </aside>
+        <main>
+          <h2>Your Repositories</h2>
+          <div id="search">
+            <input
+              type="text"
+              value={searchQuery}
+              placeholder="search...."
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          {searchResults.map((repo) => {
             return (
-          <div key={repo._id}> 
-            <h4>{repo.name}</h4>
-            <p>{repo.description}</p>
-          </div>
+              <div key={repo._id}>
+                <h4>{repo.name}</h4>
+                <p>{repo.description}</p>
+              </div>
             );
-        })}
-      </main>
-      <aside>
-        <h3>Upcoming Evevts</h3>
-        <ul>
-          <li>
-            <p>Tech Conference - Dec 15</p>
-          </li>
-          <li>
-            <p>Developer Meetup - Dec 13</p>
-          </li>
-          <li>
-            <p>React Sumit - jan 15</p>
-          </li>
-        </ul>
-      </aside>
-    </section>
+          })}
+        </main>
+        <aside>
+          <h3>Upcoming Evevts</h3>
+          <ul>
+            <li>
+              <p>Tech Conference - Dec 15</p>
+            </li>
+            <li>
+              <p>Developer Meetup - Dec 13</p>
+            </li>
+            <li>
+              <p>React Sumit - jan 15</p>
+            </li>
+          </ul>
+        </aside>
+      </section>
+    </>
   );
 };
 
